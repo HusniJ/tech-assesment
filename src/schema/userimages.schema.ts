@@ -9,7 +9,7 @@ export class UserImage {
     userId: string;
 
     @Prop([String])
-    ImagePaths: string[];
+    imagePaths: string[];
 }
 
 export const UserImageSchema = SchemaFactory.createForClass(UserImage);
