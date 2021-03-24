@@ -14,6 +14,8 @@ export class AppController {
 
     let existingUser = await this.appService.getById(createUserDto.userId);
 
+    // Check for the User and if there are existing records then abort 
+    // the operation
     if (existingUser !== null) {
       throw new HttpException({
         message: "User Already Exists"
@@ -31,6 +33,8 @@ export class AppController {
   async Update(@Body() createUserDto: CreateUserDto): Promise<User> {
     let existingUser = await this.appService.getById(createUserDto.userId);
 
+    // Check for User and if there are no existing records then abort 
+    // the operation
     if (existingUser === null) {
       throw new HttpException({
         message: "User Does Not Exists"
@@ -48,6 +52,8 @@ export class AppController {
   async Delete(@Param("id") id: string): Promise<User> {
     let existingUser = await this.appService.getById(id);
 
+    // Check for Existing user and if there are no existing records then abort 
+    // the operation
     if (existingUser === null) {
       throw new HttpException({
         message: "User Does Not Exists"
@@ -84,6 +90,8 @@ export class AppController {
 
     let existingImagesForUser = await this.appService.getImagesByUser(createUserImagesDto.userId);
 
+    // Check for Existing Images for the User and if there are existing records then abort 
+    // the operation
     if (existingImagesForUser !== null) {
       throw new HttpException({
         message: "Images Already Exists"
@@ -101,6 +109,8 @@ export class AppController {
   async UpdateImages(@Body() createUserImagesDto: CreateUserImagesDto): Promise<UserImage> {
     let existingImages = await this.appService.getImagesByUser(createUserImagesDto.userId);
 
+    // Check for Existing Images for the User and if there are no existing records then abort 
+    // the operation
     if (existingImages === null) {
       throw new HttpException({
         message: "Images Does Not Exists"
