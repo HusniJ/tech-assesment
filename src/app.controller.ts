@@ -12,6 +12,19 @@ export class AppController {
   @Post("insert")
   async Insert(@Body() createUserDto: CreateUserDto): Promise<User> {
 
+    // Validate Body Param
+    if (createUserDto.name.trim() === '') {
+      throw new HttpException({
+        message: "Invalid Name"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
+    if (createUserDto.userId.trim() === '') {
+      throw new HttpException({
+        message: "Invalid User Id"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
     let existingUser = await this.appService.getById(createUserDto.userId);
 
     // Check for the User and if there are existing records then abort 
@@ -88,6 +101,25 @@ export class AppController {
   @Post("images/insert")
   async InsertImages(@Body() createUserImagesDto: CreateUserImagesDto): Promise<UserImage> {
 
+    // Validate Body Param
+    if (createUserImagesDto.userId.trim() === '') {
+      throw new HttpException({
+        message: "Invalid User Id"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
+    if (!Array.isArray(createUserImagesDto.imagePaths)) {
+      throw new HttpException({
+        message: "Invalid Format"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
+    if (createUserImagesDto.imagePaths.length !== 9) {
+      throw new HttpException({
+        message: "Please Send only 9 Images"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
     let existingImagesForUser = await this.appService.getImagesByUser(createUserImagesDto.userId);
 
     // Check for Existing Images for the User and if there are existing records then abort 
@@ -107,6 +139,25 @@ export class AppController {
 
   @Put("images/update")
   async UpdateImages(@Body() createUserImagesDto: CreateUserImagesDto): Promise<UserImage> {
+    // Validate Body Param
+    if (createUserImagesDto.userId.trim() === '') {
+      throw new HttpException({
+        message: "Invalid User Id"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
+    if (!Array.isArray(createUserImagesDto.imagePaths)) {
+      throw new HttpException({
+        message: "Invalid Format"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
+    if (createUserImagesDto.imagePaths.length !== 9) {
+      throw new HttpException({
+        message: "Please Send only 9 Images"
+      }, HttpStatus.NOT_ACCEPTABLE)
+    }
+
     let existingImages = await this.appService.getImagesByUser(createUserImagesDto.userId);
 
     // Check for Existing Images for the User and if there are no existing records then abort 
