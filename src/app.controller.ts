@@ -95,7 +95,7 @@ export class AppController {
     if (existingImagesForUser !== null) {
       throw new HttpException({
         message: "Images Already Exists"
-      }, HttpStatus.NOT_ACCEPTABLE)
+      }, HttpStatus.BAD_REQUEST)
     }
 
     return this.appService.createImages(createUserImagesDto).catch(error => {
