@@ -51,6 +51,12 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Configuration
+
+```
+Configurations are stored in .env files
+```
+
 ## Caching
 
 ```
