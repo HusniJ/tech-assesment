@@ -2,6 +2,12 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
 
+## API Documentation
+
+```
+API documentation can be found in swagger and access the swagger page by appending /swagger to the base url
+```
+
 ## Dependencies
 
 ```
@@ -43,6 +49,12 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## Caching
+
+```
+Caching is implemented using the cache manager npm module and all the GET requests are cached for 5 seconds from the time of first intiation
 ```
 
 ## Stay in touch
